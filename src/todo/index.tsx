@@ -15,7 +15,7 @@ const TodoScreen = (props: Props) => {
   let id = 0 
   const handleChange = (event: any) => {
     event.preventDefault();
-    console.log(event.target.value);
+    // console.log(event.target.value);
 
     setState(event.target.value);
   };
@@ -35,7 +35,7 @@ const TodoScreen = (props: Props) => {
       <p>this is to do screen</p>
       <input onChange={handleChange}></input>
       <div>
-        <p>{state}</p>
+        <p>current : {state}</p>
       </div>
 
       <div>
