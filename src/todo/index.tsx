@@ -37,6 +37,9 @@ const TodoScreen = (props: Props) => {
   const hadnleCheckState = () => {
     console.log(selector)
   }
+  const handleToggle = (id: number) => {
+    dispatch(todoAction.toggle(id))
+  }
   return (
     <div>
       <p>this is to do screen</p>
@@ -55,6 +58,8 @@ const TodoScreen = (props: Props) => {
             <div key={index}>
               <p>{element.id}</p>
               <p>{element.title}</p>
+              <p>{element.completed ? "isActive" : " isnot"}</p>
+              <button onClick={() => handleToggle(element.id)}>changeSTate</button>
             </div>
           );
         })}
