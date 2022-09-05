@@ -1,9 +1,11 @@
-import { combineEpics } from 'redux-observable';
+import { combineReducers } from "redux"
+import todosReducer from '../todo/redux/reducer'
 
 
 
-
-const rootReducer = combineEpics({})
+const rootReducer = combineReducers({
+  todos: todosReducer 
+})
 
 
 export default rootReducer
