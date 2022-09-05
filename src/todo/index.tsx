@@ -8,6 +8,7 @@ type Props = {};
 let id = 1
 const TodoScreen = (props: Props) => {
   const dispatch = useDispatch();
+  const selector = useSelector((state: RootState) => state)
   const [getTodo] = useSelector(
     (state: RootState) => [getTodos(state.todos)],
     shallowEqual
@@ -32,6 +33,10 @@ const TodoScreen = (props: Props) => {
   const handleGetTodos = () => {
     console.log(getTodo);
   };
+
+  const hadnleCheckState = () => {
+    console.log(selector)
+  }
   return (
     <div>
       <p>this is to do screen</p>
@@ -56,6 +61,9 @@ const TodoScreen = (props: Props) => {
       </div>
       <div>
         <button onClick={handleGetTodos}>getTodos</button>
+      </div>
+      <div>
+        <button onClick={hadnleCheckState}>checkState</button>
       </div>
     </div>
   );
