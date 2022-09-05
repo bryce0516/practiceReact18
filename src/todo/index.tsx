@@ -1,35 +1,37 @@
 import React from "react";
 import * as selector from "./redux/selector";
-import * as todoAction from './redux/action'
-import { shallowEqual, useDispatch, useSelector } from 'react-redux'
+import * as todoAction from "./redux/action";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { getTodos } from "./redux/selector";
 import { RootState } from "StoreType";
 type Props = {};
-
+let id = 1
 const TodoScreen = (props: Props) => {
-  const dispatch = useDispatch()
-  const [getTodo] = useSelector((state: RootState) => [
-    getTodos(state.todos)
-  ], shallowEqual)
+  const dispatch = useDispatch();
+  const [getTodo] = useSelector(
+    (state: RootState) => [getTodos(state.todos)],
+    shallowEqual
+  );
   const [state, setState] = React.useState<string>("");
-  let id = 0 
+
   const handleChange = (event: any) => {
     event.preventDefault();
-    // console.log(event.target.value);
 
     setState(event.target.value);
   };
 
   const handleClick = () => {
-    dispatch(todoAction.add({
-      id: id++,
-      title: state,
-      completed: false
-    }))
-  }
+    dispatch(
+      todoAction.add({
+        id: id++,
+        title: state,
+        completed: false,
+      })
+    );
+  };
   const handleGetTodos = () => {
-    console.log(getTodo)
-  }
+    console.log(getTodo);
+  };
   return (
     <div>
       <p>this is to do screen</p>
@@ -43,9 +45,14 @@ const TodoScreen = (props: Props) => {
       </div>
 
       <div>
-        {getTodo.map((element: any, index:number) => {
-          return <p key={index}>{element.title}</p>}
-          )}
+        {getTodo.map((element: any, index: number) => {
+          return (
+            <div key={index}>
+              <p>{element.id}</p>
+              <p>{element.title}</p>
+            </div>
+          );
+        })}
       </div>
       <div>
         <button onClick={handleGetTodos}>getTodos</button>
@@ -53,4 +60,4 @@ const TodoScreen = (props: Props) => {
     </div>
   );
 };
-export default TodoScreen
+export default TodoScreen;
