@@ -8,7 +8,7 @@ type Props = {};
 
 const TodoScreen = (props: Props) => {
   const dispatch = useDispatch()
-  const selector = useSelector((state: RootState) => [
+  const [getTodo] = useSelector((state: RootState) => [
     getTodos(state.todos)
   ], shallowEqual)
   const [state, setState] = React.useState<string>("");
@@ -28,7 +28,7 @@ const TodoScreen = (props: Props) => {
     }))
   }
   const handleGetTodos = () => {
-    console.log(selector)
+    console.log(getTodo)
   }
   return (
     <div>
@@ -40,6 +40,12 @@ const TodoScreen = (props: Props) => {
 
       <div>
         <button onClick={handleClick}>add</button>
+      </div>
+
+      <div>
+        {getTodo.map((element: any, index:number) => {
+          return <p key={index}>{element.title}</p>}
+          )}
       </div>
       <div>
         <button onClick={handleGetTodos}>getTodos</button>
